@@ -1,8 +1,8 @@
 # Node.js Style Guide
 
 This is a guide for writing consistent and aesthetically pleasing node.js code.
-It is inspired by what is popular within the community, and flavored with some
-personal opinions.
+It is inspired by what is popular within the community, flavored with some
+personal opinions and slightly adjusted by the Babble dev team.
 
 There is a .jshintrc which enforces these rules as closely as possible. You can
 either use that and adjust it, or use
@@ -18,18 +18,17 @@ according to your preferences.
 ## Table of contents
 
 ### Formatting
-* [2 Spaces for indentation](#2-spaces-for-indentation)
-* [Newlines](#newlines)
+* [Tabs with indent size of 4 for indentation](#tabs-with-indent-size-of-4-for-indentation)
 * [No trailing whitespace](#no-trailing-whitespace)
 * [Use Semicolons](#use-semicolons)
-* [80 characters per line](#80-characters-per-line)
+* [100 characters per line](#100-characters-per-line)
 * [Use single quotes](#use-single-quotes)
 * [Opening braces go on the same line](#opening-braces-go-on-the-same-line)
+* [Single line conditional statements are bracket-less](single-line-conditional-statements-are-bracket-less)
 * [Declare one variable per var statement](#declare-one-variable-per-var-statement)
 
 ### Naming Conventions
 * [Use lowerCamelCase for variables, properties and function names](#use-lowercamelcase-for-variables-properties-and-function-names)
-* [Use UpperCamelCase for class names](#use-uppercamelcase-for-class-names)
 * [Use UPPERCASE for Constants](#use-uppercase-for-constants)
 
 ### Variables
@@ -60,15 +59,10 @@ according to your preferences.
 
 You may want to use [editorconfig.org](http://editorconfig.org/) to enforce the formatting settings in your editor. Use the [Node.js Style Guide .editorconfig file](.editorconfig) to have indentation, newslines and whitespace behavior automatically set to the rules set up below.
 
-### 2 Spaces for indentation
+### Tabs with indent size of 4 for indentation
 
-Use 2 spaces for indenting your code and swear an oath to never mix tabs and
+Use tabs with an indent size of 4 for indenting your code and swear an oath to never mix tabs and
 spaces - a special kind of hell is awaiting you otherwise.
-
-### Newlines
-
-Use UNIX-style newlines (`\n`), and a newline character as the last character
-of a file. Windows-style newlines (`\r\n`) are forbidden inside any repository.
 
 ### No trailing whitespace
 
@@ -78,7 +72,7 @@ careless neglect will eventually drive away contributors and/or co-workers.
 
 ### Use Semicolons
 
-According to [scientific research][hnsemicolons], the usage of semicolons is
+Use semicolons everywhere except after declaring a function or conditional statements with brackets. According to [scientific research][hnsemicolons], the usage of semicolons is
 a core value of our community. Consider the points of [the opposition][], but
 be a traditionalist when it comes to abusing error correction mechanisms for
 cheap syntactic pleasures.
@@ -86,9 +80,9 @@ cheap syntactic pleasures.
 [the opposition]: http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
 [hnsemicolons]: http://news.ycombinator.com/item?id=1547647
 
-### 80 characters per line
+### 100 characters per line
 
-Limit your lines to 80 characters. Yes, screens have gotten much bigger over the
+Limit your lines to 100 characters. Yes, screens have gotten much bigger over the
 last few years, but your brain has not. Use the additional room for split screen,
 your editor supports that, right?
 
@@ -116,7 +110,7 @@ Your opening braces go on the same line as the statement.
 
 ```js
 if (true) {
-  console.log('winning');
+	console.log('winning');
 }
 ```
 
@@ -125,18 +119,32 @@ if (true) {
 ```js
 if (true)
 {
-  console.log('losing');
+	console.log('losing');
 }
 ```
 
-Also, notice the use of whitespace before and after the condition statement.
+Also, no whitespace before or after the condition statement.
+
+### Single line conditional statements are bracket-less
+
+A conditional statement with just 1 line doesn't deserve any brackets.
+
+*Right:*
+
+```js
+if (true) console.log('win');
+```
+
+*Wrong:*
+
+```js
+if (true) { console.log('lose'); }
+```
 
 ### Declare one variable per var statement
 
 Declare one variable per var statement, it makes it easier to re-order the
-lines. However, ignore [Crockford][crockfordconvention] when it comes to
-declaring variables deeper inside a function, just put the declarations wherever
-they make sense.
+lines.
 
 *Right:*
 
@@ -146,8 +154,8 @@ var values = [23, 42];
 
 var object = {};
 while (keys.length) {
-  var key = keys.pop();
-  object[key] = values.pop();
+	var key = keys.pop();
+	object[key] = values.pop();
 }
 ```
 
@@ -155,17 +163,15 @@ while (keys.length) {
 
 ```js
 var keys = ['foo', 'bar'],
-    values = [23, 42],
-    object = {},
-    key;
+	values = [23, 42],
+	object = {},
+	key;
 
 while (keys.length) {
-  key = keys.pop();
-  object[key] = values.pop();
+	key = keys.pop();
+	object[key] = values.pop();
 }
 ```
-
-[crockfordconvention]: http://javascript.crockford.com/code.html
 
 ## Naming Conventions
 
@@ -178,30 +184,16 @@ abbreviations should generally be avoided.
 *Right:*
 
 ```js
-var adminUser = db.query('SELECT * FROM users ...');
-```
-
-*Wrong:*
-
-```js
-var admin_user = db.query('SELECT * FROM users ...');
-```
-
-### Use UpperCamelCase for class names
-
-Class names should be capitalized using `UpperCamelCase`.
-
-*Right:*
-
-```js
-function BankAccount() {
+function bankAccount() {
+	let robuxMoney = 100000;
 }
 ```
 
 *Wrong:*
 
 ```js
-function bank_Account() {
+function BankAccount() {
+	let robux_money = 10;
 }
 ```
 
@@ -244,8 +236,8 @@ keys when your interpreter complains:
 ```js
 var a = ['hello', 'world'];
 var b = {
-  good: 'code',
-  'is generally': 'pretty',
+	good: 'code',
+	'is generally': 'pretty',
 };
 ```
 
@@ -253,11 +245,11 @@ var b = {
 
 ```js
 var a = [
-  'hello', 'world'
+	'hello', 'world'
 ];
 var b = {"good": 'code'
-        , is generally: 'pretty'
-        };
+		, is generally: 'pretty'
+		};
 ```
 
 ## Conditionals
@@ -272,7 +264,7 @@ the triple equality operator as it will work just as expected.
 ```js
 var a = 0;
 if (a !== '') {
-  console.log('winning');
+	console.log('winning');
 }
 
 ```
@@ -282,28 +274,28 @@ if (a !== '') {
 ```js
 var a = 0;
 if (a == '') {
-  console.log('losing');
+	console.log('losing');
 }
 ```
 
 [comparisonoperators]: https://developer.mozilla.org/en/JavaScript/Reference/Operators/Comparison_Operators
 
-### Use multi-line ternary operator
+### Use single-line ternary operator
 
-The ternary operator should not be used on a single line. Split it up into multiple lines instead.
+The ternary operator should not be used on multiple lines. It's supposed to be a short 'if' statement, so keep it short, please.
 
 *Right:*
 
 ```js
-var foo = (a === b)
-  ? 1
-  : 2;
+var foo = (a === b) ? 1 : 2;
 ```
 
 *Wrong:*
 
 ```js
-var foo = (a === b) ? 1 : 2;
+var foo = (a === b)
+	? 1
+	: 2;
 ```
 
 ### Use descriptive conditions
@@ -316,7 +308,7 @@ Any non-trivial conditions should be assigned to a descriptively named variable 
 var isValidPassword = password.length >= 4 && /^(?=.*\d).{4,}$/.test(password);
 
 if (isValidPassword) {
-  console.log('winning');
+	console.log('winning');
 }
 ```
 
@@ -324,17 +316,11 @@ if (isValidPassword) {
 
 ```js
 if (password.length >= 4 && /^(?=.*\d).{4,}$/.test(password)) {
-  console.log('losing');
+	console.log('losing');
 }
 ```
 
 ## Functions
-
-### Write small functions
-
-Keep your functions short. A good function fits on a slide that the people in
-the last row of a big room can comfortably read. So don't count on them having
-perfect vision and limit yourself to ~15 lines of code per function.
 
 ### Return early from functions
 
@@ -345,15 +331,15 @@ as possible.
 
 ```js
 function isPercentage(val) {
-  if (val < 0) {
-    return false;
-  }
+	if (val < 0) {
+		return false;
+	}
 
-  if (val > 100) {
-    return false;
-  }
+	if (val > 100) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 ```
 
@@ -361,15 +347,15 @@ function isPercentage(val) {
 
 ```js
 function isPercentage(val) {
-  if (val >= 0) {
-    if (val < 100) {
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    return false;
-  }
+	if (val >= 0) {
+		if (val < 100) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
 }
 ```
 
@@ -378,8 +364,8 @@ further:
 
 ```js
 function isPercentage(val) {
-  var isInRange = (val >= 0 && val <= 100);
-  return isInRange;
+	var isInRange = (val >= 0 && val <= 100);
+	return isInRange;
 }
 ```
 
@@ -392,7 +378,7 @@ will produce better stack traces, heap and cpu profiles.
 
 ```js
 req.on('end', function onEnd() {
-  console.log('winning');
+	console.log('winning');
 });
 ```
 
@@ -400,7 +386,7 @@ req.on('end', function onEnd() {
 
 ```js
 req.on('end', function() {
-  console.log('losing');
+	console.log('losing');
 });
 ```
 
@@ -412,7 +398,7 @@ Use closures, but don't nest them. Otherwise your code will become a mess.
 
 ```js
 setTimeout(function() {
-  client.connect(afterConnect);
+	client.connect(afterConnect);
 }, 1000);
 
 function afterConnect() {
@@ -424,9 +410,9 @@ function afterConnect() {
 
 ```js
 setTimeout(function() {
-  client.connect(function() {
-    console.log('losing');
-  });
+	client.connect(function() {
+		console.log('losing');
+	});
 }, 1000);
 ```
 
@@ -441,11 +427,11 @@ You should also indent these methods so it's easier to tell they are part of the
 
 ```js
 User
-  .findOne({ name: 'foo' })
-  .populate('bar')
-  .exec(function(err, user) {
-    return true;
-  });
+	.findOne({ name: 'foo' })
+	.populate('bar')
+	.exec(function(err, user) {
+		return true;
+	});
 ```
 
 *Wrong:*
@@ -455,31 +441,31 @@ User
 .findOne({ name: 'foo' })
 .populate('bar')
 .exec(function(err, user) {
-  return true;
+	return true;
 });
 
 User.findOne({ name: 'foo' })
-  .populate('bar')
-  .exec(function(err, user) {
-    return true;
-  });
+	.populate('bar')
+	.exec(function(err, user) {
+		return true;
+	});
 
 User.findOne({ name: 'foo' }).populate('bar')
 .exec(function(err, user) {
-  return true;
+	return true;
 });
 
 User.findOne({ name: 'foo' }).populate('bar')
-  .exec(function(err, user) {
-    return true;
-  });
+	.exec(function(err, user) {
+		return true;
+	});
 ```
 
 ## Comments
 
 ### Use slashes for comments
 
-Use slashes for both single line and multi line comments. Try to write
+Use slashes or what is appropriate for that specific language for both single line and multi line comments. Try to write
 comments that explain higher level mechanisms or clarify difficult
 segments of your code. Don't use comments to restate trivial things.
 
@@ -493,12 +479,12 @@ var matches = item.match(/ID_([^\n]+)=([^\n]+)/));
 // redis counter used for statistics will cause an exception. This needs
 // to be fixed in a later iteration.
 function loadUser(id, cb) {
-  // ...
+	// ...
 }
 
 var isSessionValid = (session.expires < Date.now());
 if (isSessionValid) {
-  // ...
+	// ...
 }
 ```
 
@@ -510,14 +496,14 @@ var matches = item.match(/ID_([^\n]+)=([^\n]+)/);
 
 // Usage: loadUser(5, function() { ... })
 function loadUser(id, cb) {
-  // ...
+	// ...
 }
 
 // Check if the session is valid
 var isSessionValid = (session.expires < Date.now());
 // If the session is valid
 if (isSessionValid) {
-  // ...
+	// ...
 }
 ```
 
@@ -527,9 +513,9 @@ if (isSessionValid) {
 
 Crazy shit that you will probably never need. Stay away from it.
 
-### Requires At Top
+### Requires and Imports at the top
 
-Always put requires at top of file to clearly illustrate a file's dependencies. Besides giving an overview for others at a quick glance of dependencies and possible memory impact, it allows one to determine if they need a package.json file should they choose to use the file elsewhere.
+Always put requires and imports at top of file to clearly illustrate a file's dependencies. Besides giving an overview for others at a quick glance of dependencies and possible memory impact, it allows one to determine if they need a package.json file should they choose to use the file elsewhere.
 
 ### Getters and setters
 
@@ -551,7 +537,7 @@ be forever grateful.
 ```js
 var a = [];
 if (!a.length) {
-  console.log('winning');
+	console.log('winning');
 }
 ```
 
@@ -559,11 +545,11 @@ if (!a.length) {
 
 ```js
 Array.prototype.empty = function() {
-  return !this.length;
+	return !this.length;
 }
 
 var a = [];
 if (a.empty()) {
-  console.log('losing');
+	console.log('losing');
 }
 ```
