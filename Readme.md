@@ -224,7 +224,23 @@ File.fullPermissions = 0777;
 
 [const]: https://developer.mozilla.org/en/JavaScript/Reference/Statements/const
 
+### Use lowerCamelCase for JavaScript file names and UpperCamelCase for React Component file names
+
+All React file names that export a component should use `UpperCamelCase`, since it's required for React to work.
+All other Node/Javascript file names should use `lowerCamelCase`, since it's the most common convention by far for Javascript file names. 
+Automatically generated files stay the way they are. Don't touch em.
+
+### Use UpperCamelCase for folder names
+
+All folder names should use `UpperCamelCase`, with a few exceptions:
+- All root folders
+- All direct sub folders of src
+- All automatically generated folders
+
 ## Variables
+
+### Only const or let for declaring variables
+
 
 ### Object / Array creation
 
