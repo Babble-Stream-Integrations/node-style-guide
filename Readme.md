@@ -24,7 +24,7 @@ according to your preferences.
 * [100 characters per line](#100-characters-per-line)
 * [Use single quotes](#use-single-quotes)
 * [Opening braces go on the same line](#opening-braces-go-on-the-same-line)
-* [Single line conditional statements are bracket-less](single-line-conditional-statements-are-bracket-less)
+* [Single line conditional statements are bracket-less](#single-line-conditional-statements-are-bracket-less)
 * [Declare one variable per var statement](#declare-one-variable-per-var-statement)
 
 ### Naming Conventions
@@ -36,7 +36,7 @@ according to your preferences.
 
 ### Conditionals
 * [Use the === operator](#use-the--operator)
-* [Use multi-line ternary operator](#use-multi-line-ternary-operator)
+* [Use single-line ternary operator](#use-single-line-ternary-operator)
 * [Use descriptive conditions](#use-descriptive-conditions)
 
 ### Functions
